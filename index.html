@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Museo Virtual — Akira Toriyama</title>
+  <title>Virtual Museum — Akira Toriyama</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -18,7 +18,7 @@
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      font-family: 'Roboto', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-family: 'Roboto', system-ui, sans-serif;
       background: linear-gradient(180deg, #071226 0%, #081826 60%);
       color: #e6eef6;
       line-height: 1.5;
@@ -46,9 +46,8 @@
       height: 88px;
       border-radius: 12px;
       flex: 0 0 88px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255,204,0,0.15), transparent 8%),
-        linear-gradient(120deg,#0b1a2b,#142535);
+      background: radial-gradient(circle at 30% 30%, rgba(255,204,0,0.15), transparent 8%),
+                  linear-gradient(120deg,#0b1a2b,#142535);
       border: 1px solid rgba(255,255,255,0.05);
       display:flex;
       align-items:center;
@@ -56,32 +55,16 @@
       font-weight:900;
       color: var(--accent);
       font-size: 24px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
     }
-    h1 {
-      margin: 0;
-      font-size: 26px;
-      letter-spacing: -0.5px;
-      font-weight:800;
-    }
-    .sub {
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 6px;
-    }
-
+    h1 { margin: 0; font-size: 26px; font-weight:800; }
+    .sub { color: var(--muted); font-size: 13px; margin-top: 6px; }
     .grid {
       display: grid;
       grid-template-columns: 1fr 360px;
       gap: 22px;
       margin-top: 22px;
     }
-    @media (max-width: 980px){
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    @media (max-width: 980px){ .grid { grid-template-columns: 1fr; } }
     main {
       background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
       padding: 18px;
@@ -89,51 +72,22 @@
       border: 1px solid rgba(255,255,255,0.03);
       box-shadow: 0 6px 20px rgba(2,6,10,0.35);
     }
-    .hero {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      margin-bottom: 18px;
-    }
+    .hero { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
     .portrait {
-      width: 128px;
-      height: 128px;
-      border-radius: 10px;
-      overflow: hidden;
-      flex: 0 0 128px;
+      width: 128px; height: 128px;
+      border-radius: 10px; overflow: hidden;
       border:1px solid rgba(255,255,255,0.04);
-      background: linear-gradient(180deg, #071426, #0a2a36);
+      background: #0a2a36;
     }
-    .portrait img {
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .meta h2 {
-      margin:0;
-      font-size:20px;
-    }
-    .meta .facts {
-      color: var(--muted);
-      font-size:13px;
-      margin-top:6px;
-    }
-
-    section.bio h3,
-    section.timeline h3,
-    section.gallery h3,
-    section.tour h3 {
-      margin-top: 24px;
-      margin-bottom:12px;
-      font-size:18px;
-      border-bottom:1px solid rgba(255,255,255,0.1);
+    .portrait img { width:100%; height:100%; object-fit:cover; }
+    .meta h2 { margin:0; font-size:20px; }
+    .meta .facts { color: var(--muted); font-size:13px; margin-top:6px; }
+    section h3 {
+      margin-top: 24px; margin-bottom:12px;
+      font-size:18px; border-bottom:1px solid rgba(255,255,255,0.1);
       padding-bottom:6px;
     }
-    .bio p {
-      color: #cfe6ffcc;
-      text-align: justify;
-    }
+    .bio p { color: #cfe6ffcc; text-align: justify; }
     .bio .quote {
       margin-top: 12px;
       background: var(--glass);
@@ -143,83 +97,22 @@
       font-style: italic;
       border: 1px solid rgba(255,255,255,0.02);
     }
-
-    .timeline-list {
-      list-style: none;
-      padding:0;
-      margin:10px 0 0 0;
-      display:flex;
-      flex-direction: column;
-      gap:10px;
-    }
-    .tl-item {
-      display:flex;
-      gap:12px;
-      padding:12px;
-      border-radius:12px;
-      background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .tl-year {
-      width:72px;
-      font-weight:700;
-      color: var(--accent);
-      font-size:14px;
-      flex:0 0 72px;
-    }
-    .tl-content h4 {
-      margin:0 0 6px 0;
-      font-size:15px;
-    }
-    .tl-content p {
-      margin:0;
-      color: var(--muted);
-      font-size:14px;
-    }
-
-    .gallery-grid {
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:10px;
-    }
-    @media (max-width:700px){
-      .gallery-grid { grid-template-columns: repeat(2,1fr); }
-    }
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
-      border-radius:10px;
-      padding:8px;
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      border:1px solid rgba(255,255,255,0.025);
-    }
-    .card img {
-      width:100%;
-      height:140px;
-      object-fit:cover;
-      border-radius:8px;
-    }
-    .card .caption {
-      font-size:13px;
-      color: var(--muted);
-    }
-
-    aside {
-      position: relative;
-      height:100%;
-    }
+    .timeline-list { list-style:none; padding:0; margin:10px 0 0 0; display:flex; flex-direction:column; gap:10px; }
+    .tl-item { display:flex; gap:12px; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.02); }
+    .tl-year { width:72px; font-weight:700; color: var(--accent); font-size:14px; flex:0 0 72px; }
+    .tl-content h4 { margin:0 0 6px 0; font-size:15px; }
+    .tl-content p { margin:0; color: var(--muted); font-size:14px; }
+    .gallery-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:10px; }
+    @media (max-width:700px){ .gallery-grid { grid-template-columns: repeat(2,1fr); } }
+    .card { background: rgba(255,255,255,0.015); border-radius:10px; padding:8px; display:flex; flex-direction:column; gap:8px; border:1px solid rgba(255,255,255,0.025); }
+    .card img { width:100%; height:140px; object-fit:cover; border-radius:8px; }
+    .card .caption { font-size:13px; color: var(--muted); }
+    aside { position: relative; }
     .panel {
-      position: sticky;
-      top: 24px;
-      padding:16px;
-      border-radius:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      position: sticky; top: 24px;
+      padding:16px; border-radius:12px;
+      background: rgba(255,255,255,0.02);
       border:1px solid rgba(255,255,255,0.03);
-    }
-    .panel h3 {
-      margin:0 0 8px 0;
     }
     .visit-btn {
       display:inline-block;
@@ -229,72 +122,29 @@
       border-radius:10px;
       font-weight:700;
       text-decoration:none;
-      box-shadow: 0 8px 18px rgba(255,204,0,0.08);
     }
-    .small {
-      color: var(--muted);
-      font-size:13px;
-      margin-top:10px;
-    }
-
-    /* Modal for gallery */
+    .small { color: var(--muted); font-size:13px; margin-top:10px; }
     .modal {
-      position: fixed;
-      inset: 0;
-      display: none;
-      align-items: center;
-      justify-content: center;
+      position: fixed; inset: 0; display: none;
+      align-items: center; justify-content: center;
       background: rgba(2,6,12,0.7);
-      z-index: 60;
-      padding:20px;
+      z-index: 60; padding:20px;
     }
-    .modal.open {
-      display:flex;
-    }
-    .viewer {
-      max-width:1100px;
-      width:100%;
-      border-radius:12px;
-      overflow:hidden;
-      background:#04060a;
-      border:1px solid rgba(255,255,255,0.06);
-    }
-    .viewer img {
-      width:100%;
-      height: calc(70vh);
-      object-fit: contain;
-      background:#000;
-    }
-    .viewer .meta {
-      padding:12px;
-      display:flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .close {
-      background:transparent;
-      border:0;
-      color: var(--muted);
-      font-weight:700;
-      cursor:pointer;
-    }
-
-    footer {
-      margin-top:18px;
-      color: var(--muted);
-      font-size:13px;
-      text-align:center;
-      padding:8px 0 4px 0;
-    }
+    .modal.open { display:flex; }
+    .viewer { max-width:1100px; width:100%; border-radius:12px; background:#04060a; border:1px solid rgba(255,255,255,0.06); }
+    .viewer img { width:100%; height: 70vh; object-fit: contain; background:#000; }
+    .viewer .meta { padding:12px; display:flex; justify-content: space-between; align-items:center; }
+    .close { background:transparent; border:0; color: var(--muted); font-weight:700; cursor:pointer; }
+    footer { margin-top:18px; color: var(--muted); font-size:13px; text-align:center; padding:8px 0 4px 0; }
   </style>
 </head>
 <body>
-  <div class="site" role="main" aria-labelledby="title">
+  <div class="site">
     <header>
-      <div class="logo" aria-hidden="true">AT</div>
+      <div class="logo">AT</div>
       <div>
-        <h1 id="title">Museo Virtual — Akira Toriyama</h1>
-        <div class="sub">Un recorrido interactivo por la vida, obras y legado del autor.</div>
+        <h1>Virtual Museum — Akira Toriyama</h1>
+        <div class="sub">An interactive journey through the artist's life and legacy.</div>
       </div>
     </header>
 
@@ -302,171 +152,117 @@
       <main>
 
         <div class="hero">
-          <div class="portrait" title="Akira Toriyama retrato">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg" alt="Retrato de Akira Toriyama">
+          <div class="portrait">
+            <!-- IMAGE 1: Portrait of Akira Toriyama -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg" alt="Akira Toriyama portrait">
           </div>
           <div class="meta">
-            <h2>Akira Toriyama <span class="muted">（鳥山 明）</span></h2>
+            <h2>Akira Toriyama <span>(鳥山 明)</span></h2>
             <div class="facts">
-              Nacido: 5 de abril de 1955 — Fallecido: 1 de marzo de 2024. <br>
-              Obras destacadas: <strong>Dr. Slump</strong>, <strong>Dragon Ball</strong>.<br>
-              Reconocido como uno de los mangaka más influyentes de su generación. :contentReference[oaicite:0]{index=0}
+              Born: April 5, 1955 — Died: March 1, 2024.<br>
+              Famous works: <strong>Dr. Slump</strong>, <strong>Dragon Ball</strong>.<br>
+              Widely regarded as one of Japan’s most influential manga artists.
             </div>
           </div>
         </div>
 
-        <section class="bio" aria-labelledby="bioTitle">
-          <h3 id="bioTitle">Biografía resumida</h3>
-          <p>
-            Akira Toriyama fue un mangaka y diseñador de personajes japonés cuyo trabajo transformó el manga shōnen moderno. :contentReference[oaicite:1]{index=1}
-            Comenzó su carrera a finales de los años 70, alcanzó fama con <em>Dr. Slump</em> (1980-1984) y luego con <em>Dragon Ball</em> (1984-1995). :contentReference[oaicite:2]{index=2}
-          </p>
-          <div class="quote">
-            «Su humor sencillo, el sentido de ritmo en la acción y personajes inolvidables marcaron una era en el manga.»
-          </div>
+        <section class="bio">
+          <h3>Short Biography</h3>
+          <p>Akira Toriyama was a Japanese manga artist and character designer whose work transformed modern shōnen manga. He rose to fame with <em>Dr. Slump</em> (1980–1984) and then <em>Dragon Ball</em> (1984–1995), inspiring generations of artists worldwide.</p>
+          <div class="quote">“His humor, rhythm in action, and unforgettable characters defined an era of manga.”</div>
         </section>
 
-        <section class="timeline" aria-labelledby="tlTitle">
-          <h3 id="tlTitle">Línea del tiempo</h3>
-          <ul id="timelineList" class="timeline-list">
-            <!-- será generado por JavaScript -->
-          </ul>
+        <section class="timeline">
+          <h3>Timeline</h3>
+          <ul id="timelineList" class="timeline-list"></ul>
         </section>
 
-        <section class="gallery" aria-labelledby="galTitle">
-          <h3 id="galTitle">Galería — selecciona para ampliar</h3>
-          <div class="gallery-grid" id="galleryGrid">
-            <!-- generado por JavaScript -->
-          </div>
-        </section>
-
-        <section class="tour" aria-labelledby="tourTitle">
-          <h3 id="tourTitle">Recorrido virtual (360°)</h3>
-          <p class="small">Usa este espacio para explorar escenas conceptuales de exposiciones. Puedes sustituir por un visor real más adelante.</p>
-          <div class="card" style="padding:12px; margin-top:10px;">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <strong>Visor de sala: «Exposición 40 años Dragon Ball»</strong>
-              <span class="kbd">Explorar</span>
-            </div>
-            <div style="margin-top:12px;">
-              <iframe
-                title="Placeholder 360"
-                src="https://www.google.com/maps/embed?pb=!1m0!4v1600000000000!6m8!1m7!1sCAoSLEFGMVFpcE1fUGx..."
-                style="width:100%; height: 240px; border:0; border-radius:8px;"
-                loading="lazy"></iframe>
-              <div class="small muted" style="margin-top:8px;">Este iframe es un placeholder: reemplaza por tu panorama equirectangular real si lo tienes.</div>
-            </div>
-          </div>
+        <section class="gallery">
+          <h3>Gallery — click to enlarge</h3>
+          <div class="gallery-grid" id="galleryGrid"></div>
         </section>
 
         <footer>
-          © Museo Virtual — Homenaje a Akira Toriyama. <br>
-          Imágenes recogidas de fuentes públicas para fines educativos.
+          © Virtual Museum — Tribute to Akira Toriyama.<br>
+          Images from public sources for educational purposes.
         </footer>
 
       </main>
 
       <aside>
-        <div class="panel" aria-labelledby="infoPanel">
-          <h3 id="infoPanel">Datos rápidos</h3>
-          <p class="small muted">Haz clic en las imágenes de la galería para ampliarlas. Desplázate por la línea del tiempo para conocer su trayectoria.</p>
-          <div style="margin-top:12px;">
-            <a href="#galTitle" class="visit-btn" id="openGalleryBtn">Ir a la galería</a>
-          </div>
-          <div style="margin-top:12px;">
-            <strong class="muted">Explora:</strong>
-            <ul style="margin:8px 0 0 0 16px; color:var(--muted); font-size:14px">
-              <li>Biografía y primeros años</li>
-              <li>Dr. Slump y éxito</li>
-              <li>Creación de Dragon Ball</li>
-              <li>Legado y homenaje</li>
-            </ul>
-          </div>
-          <div style="margin-top:12px;">
-            <a class="muted" href="https://es.wikipedia.org/wiki/Akira_Toriyama" target="_blank" rel="noopener">Más información – Wikipedia</a>
-          </div>
+        <div class="panel">
+          <h3>Quick info</h3>
+          <p class="small">Click any gallery image to enlarge. Scroll down for the full timeline.</p>
+          <a href="#galleryGrid" class="visit-btn" id="openGalleryBtn">Go to Gallery</a>
         </div>
       </aside>
-
     </div>
 
-    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-      <div class="viewer" role="document">
-        <img id="modalImg" src="" alt="Imagen ampliada">
+    <div id="modal" class="modal">
+      <div class="viewer">
+        <img id="modalImg" src="" alt="Enlarged image">
         <div class="meta">
           <div id="modalCaption" style="color:var(--muted); font-size:14px;"></div>
           <div>
-            <button class="close" id="prevBtn" aria-label="Anterior">←</button>
-            <button class="close" id="nextBtn" aria-label="Siguiente">→</button>
-            <button class="close" id="closeBtn" aria-label="Cerrar">Cerrar ✕</button>
+            <button class="close" id="prevBtn">←</button>
+            <button class="close" id="nextBtn">→</button>
+            <button class="close" id="closeBtn">Close ✕</button>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 
   <script>
     const timeline = [
-      { year: "1955", title: "Nacimiento", text: "Nace Akira Toriyama en Nagoya, prefectura de Aichi, Japón." },
-      { year: "1978", title: "Debut profesional", text: "Comienza a trabajar como mangaka y diseñador." },
-      { year: "1980", title: "Dr. Slump", text: "Publica 'Dr. Slump', obra que le da reconocimiento." },
-      { year: "1984", title: "Inicio Dragon Ball", text: "Inicia la publicación de 'Dragon Ball', que se volverá fenómeno mundial." },
-      { year: "1990s", title: "Diseños para videojuegos", text: "Trabaja en videojuegos como 'Dragon Quest' como diseñador de personajes." },
-      { year: "2024", title: "Fallecimiento", text: "Fallece el 1 de marzo de 2024; su legado sigue vivo." }
+      { year: "1955", title: "Birth", text: "Akira Toriyama is born in Nagoya, Aichi Prefecture, Japan." },
+      { year: "1978", title: "Professional debut", text: "Starts working as a manga artist and designer." },
+      { year: "1980", title: "Dr. Slump", text: "Publishes 'Dr. Slump', gaining national recognition." },
+      { year: "1984", title: "Dragon Ball begins", text: "Launches 'Dragon Ball', which becomes a global hit." },
+      { year: "1990s", title: "Video game design", text: "Works on games such as 'Dragon Quest' as character designer." },
+      { year: "2024", title: "Passing", text: "Dies on March 1, 2024; his legacy endures worldwide." }
     ];
 
     const gallery = [
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg",
-        caption: "Retrato de Akira Toriyama",
-        source: "Wikimedia Commons"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/en/4/4f/Dragon_Ball_Volume_1.jpg",
-        caption: "Portada Dragon Ball Vol. 1",
-        source: "Wikipedia"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/en/0/0b/Sand_Land_cover.jpg",
-        caption: "Portada Sand Land (2000)",
-        source: "Wikipedia"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/9/95/Dr_Slump.jpg",
-        caption: "Dr. Slump – ejemplar manga",
-        source: "Wikimedia Commons"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Dragon_Quest_logo.png",
-        caption: "Logo Dragon Quest – diseño de personajes por Toriyama",
-        source: "Wikipedia"
-      },
-      {
-        src: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Dragon_Ball_Z_Logo.png",
-        caption: "Logo Dragon Ball Z",
-        source: "Wikipedia"
-      }
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg", 
+        caption: "Portrait of Akira Toriyama" 
+      }, // IMAGE 2
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/en/4/4f/Dragon_Ball_Volume_1.jpg", 
+        caption: "Dragon Ball Volume 1 Cover" 
+      }, // IMAGE 3
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/en/0/0b/Sand_Land_cover.jpg", 
+        caption: "Sand Land (2000) Cover" 
+      }, // IMAGE 4
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/commons/9/95/Dr_Slump.jpg", 
+        caption: "Dr. Slump manga cover" 
+      }, // IMAGE 5
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/commons/3/33/Dragon_Quest_logo.png", 
+        caption: "Dragon Quest logo (character design by Toriyama)" 
+      }, // IMAGE 6
+      { 
+        src: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Dragon_Ball_Z_Logo.png", 
+        caption: "Dragon Ball Z logo" 
+      }  // IMAGE 7
     ];
 
-    function renderTimeline(){
+    function renderTimeline() {
       const list = document.getElementById('timelineList');
       list.innerHTML = '';
       timeline.forEach(item => {
         const li = document.createElement('li');
         li.className = 'tl-item';
-        li.innerHTML = `
-          <div class="tl-year">${item.year}</div>
-          <div class="tl-content">
-            <h4>${item.title}</h4>
-            <p>${item.text}</p>
-          </div>
-        `;
+        li.innerHTML = `<div class="tl-year">${item.year}</div>
+                        <div class="tl-content"><h4>${item.title}</h4><p>${item.text}</p></div>`;
         list.appendChild(li);
       });
     }
 
-    function renderGallery(){
+    function renderGallery() {
       const grid = document.getElementById('galleryGrid');
       grid.innerHTML = '';
       gallery.forEach((g,i) => {
@@ -474,8 +270,7 @@
         card.className = 'card';
         card.innerHTML = `
           <img src="${g.src}" alt="${g.caption}" loading="lazy" data-index="${i}">
-          <div class="caption">${g.caption} <span class="muted">— ${g.source}</span></div>
-        `;
+          <div class="caption">${g.caption}</div>`;
         grid.appendChild(card);
       });
     }
@@ -485,57 +280,31 @@
     const modalCaption = document.getElementById('modalCaption');
     let currentIndex = 0;
 
-    function openModal(index){
+    function openModal(index) {
       currentIndex = index;
       const item = gallery[index];
       modalImg.src = item.src;
-      modalCaption.textContent = item.caption + " — " + item.source;
+      modalCaption.textContent = item.caption;
       modal.classList.add('open');
-      modal.setAttribute('aria-hidden','false');
     }
-
-    function closeModal(){
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden','true');
-      modalImg.src = '';
-    }
-
-    function nextImage(){
-      currentIndex = (currentIndex + 1) % gallery.length;
-      openModal(currentIndex);
-    }
-    function prevImage(){
-      currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
-      openModal(currentIndex);
-    }
+    function closeModal(){ modal.classList.remove('open'); modalImg.src=''; }
+    function nextImage(){ currentIndex = (currentIndex + 1) % gallery.length; openModal(currentIndex); }
+    function prevImage(){ currentIndex = (currentIndex - 1 + gallery.length) % gallery.length; openModal(currentIndex); }
 
     document.addEventListener('click', e => {
       const img = e.target.closest('img[data-index]');
-      if(img){
-        const idx = parseInt(img.getAttribute('data-index'),10);
-        if(!isNaN(idx)) openModal(idx);
-      }
+      if(img){ openModal(parseInt(img.getAttribute('data-index'))); }
     });
-
     document.getElementById('closeBtn').addEventListener('click', closeModal);
     document.getElementById('nextBtn').addEventListener('click', nextImage);
     document.getElementById('prevBtn').addEventListener('click', prevImage);
-
-    modal.addEventListener('click', e => {
-      if(e.target === modal) closeModal();
-    });
-
+    modal.addEventListener('click', e => { if(e.target === modal) closeModal(); });
     document.addEventListener('keydown', e => {
       if(modal.classList.contains('open')){
-        if(e.key === 'Escape') closeModal();
-        if(e.key === 'ArrowRight') nextImage();
-        if(e.key === 'ArrowLeft') prevImage();
+        if(e.key==='Escape') closeModal();
+        if(e.key==='ArrowRight') nextImage();
+        if(e.key==='ArrowLeft') prevImage();
       }
-    });
-
-    document.getElementById('openGalleryBtn').addEventListener('click', e => {
-      e.preventDefault();
-      document.getElementById('galTitle').scrollIntoView({behavior:'smooth', block:'start'});
     });
 
     renderTimeline();
