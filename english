@@ -1,0 +1,124 @@
+import React, { useEffect } from "react";
+
+// Virtual Museum: Akira Toriyama — Single-file React component
+// TailwindCSS assumed available where deployed (we include a fallback style block)
+// Uses Pannellum (360° viewer) via CDN for the inspection viewer
+
+export default function AkiraToriyamaMuseum() {
+  useEffect(() => {
+    // load pannellum script dynamically
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js";
+    script.async = true;
+    document.body.appendChild(script);
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css";
+    document.head.appendChild(link);
+
+    script.onload = () => {
+      if (window.pannellum) {
+        window.pannellum.viewer("panorama", {
+          type: "equirectangular",
+          panorama:
+            "https://upload.wikimedia.org/wikipedia/commons/5/5f/Placeholder_panorama.jpg",
+          autoLoad: true,
+          showZoomCtrl: true,
+          showFullscreenCtrl: true,
+        });
+      }
+    };
+
+    return () => {
+      // cleanup appended resources
+      document.body.removeChild(script);
+      document.head.removeChild(link);
+    };
+  }, []);
+
+  // Timeline data (simple example) — edit or extend in your deployment
+  const timeline = [
+    { year: 1955, title: "Born", text: "Akira Toriyama is born on April 5, 1955 in Kiyosu, Aichi, Japan." },
+    { year: 1978, title: "Professional Debut", text: "Toriyama begins professional manga career after working in advertising." },
+    { year: 1980, title: "Dr. Slump", text: "Breakout success with Dr. Slump (1980-1984)." },
+    { year: 1984, title: "Dragon Ball", text: "Launches Dragon Ball in Weekly Shōnen Jump; becomes global phenomenon." },
+    { year: 1995, title: "Dragon Ball Ends", text: "Original Dragon Ball manga runs through 1995." },
+    { year: 2000, title: "Sand Land (manga)", text: "Publishes Sand Land, later adapted into multimedia projects." },
+    { year: 2024, title: "Final Projects", text: "Worked as supervisor and designer on the 2024 SAND LAND video game and related adaptations." },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900 p-6 font-sans">
+      <style>{`
+        /* Minimal fallback styles if Tailwind isn't present */
+        .museum-container{max-width:1100px;margin:0 auto}
+        .card{background:white;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.08);padding:18px;margin-bottom:16px}
+        .timeline{display:flex;flex-direction:column;gap:12px}
+        @media(min-width:900px){.timeline{flex-direction:row;gap:18px}}
+      `}</style>
+
+      <div className="museum-container">
+        <header className="flex items-center gap-4 mb-6">
+          <div className="w-20 h-20 rounded-full overflow-hidden card flex items-center justify-center">
+            <img alt="Toriyama portrait" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">Akira Toriyama — Virtual Museum</h1>
+            <p className="text-sm text-gray-600">A concise exhibition about Toriyama's life, works, and legacy — interactive timeline, gallery, and a 360° inspection viewer.</p>
+          </div>
+        </header>
+
+        <section className="card">
+          <h2 className="text-xl font-semibold mb-2">About</h2>
+          <p>
+            This small virtual museum highlights the life and career of Akira Toriyama — manga artist and character designer best known for <em>Dr. Slump</em> and <em>Dragon Ball</em>. Use the timeline below to jump through major milestones, explore the gallery, and inspect a 360° scene.
+          </p>
+        </section>
+
+        <section className="card">
+          <h2 className="text-xl font-semibold mb-4">Interactive Timeline</h2>
+          <div className="timeline">
+            {timeline.map((item) => (
+              <div key={item.year} style={{flex:1}} className="p-4">
+                <div style={{fontSize:14,color:'#6b7280'}}>{item.year}</div>
+                <div style={{fontWeight:700,fontSize:16}}>{item.title}</div>
+                <div style={{marginTop:6,color:'#374151'}}>{item.text}</div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="card">
+          <h2 className="text-xl font-semibold mb-4">Gallery (select to enlarge)</h2>
+          <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(180px,1fr))',gap:12}}>
+            <figure style={{cursor:'pointer'}} className="p-2" onClick={() => window.open('https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg','_blank')}>
+              <img alt="Toriyama" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Akira_Toriyama_portrait.jpg" style={{width:'100%',borderRadius:8}}/>
+              <figcaption style={{fontSize:12,marginTop:6}}>Akira Toriyama — portrait (click to open)</figcaption>
+            </figure>
+
+            <figure style={{cursor:'pointer'}} className="p-2" onClick={() => window.open('https://upload.wikimedia.org/wikipedia/en/4/4f/Dragon_Ball_Volume_1.jpg','_blank')}>
+              <img alt="Dragon Ball Vol 1" src="https://upload.wikimedia.org/wikipedia/en/4/4f/Dragon_Ball_Volume_1.jpg" style={{width:'100%',borderRadius:8}}/>
+              <figcaption style={{fontSize:12,marginTop:6}}>Dragon Ball — Volume 1 cover</figcaption>
+            </figure>
+
+            <figure style={{cursor:'pointer'}} className="p-2" onClick={() => window.open('https://upload.wikimedia.org/wikipedia/en/0/0b/Sand_Land_cover.jpg','_blank')}>
+              <img alt="Sand Land" src="https://upload.wikimedia.org/wikipedia/en/0/0b/Sand_Land_cover.jpg" style={{width:'100%',borderRadius:8}}/>
+              <figcaption style={{fontSize:12,marginTop:6}}>Sand Land — original manga cover</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section className="card">
+          <h2 className="text-xl font-semibold mb-4">360° Inspection Viewer</h2>
+          <p style={{marginBottom:12}}>Use your mouse or touch to look around. Click the fullscreen button for a closer inspection.</p>
+          <div id="panorama" style={{width:'100%',height: '400px',borderRadius:8,overflow:'hidden'}}></div>
+          <small style={{display:'block',marginTop:8,color:'#6b7280'}}>This viewer loads an equirectangular placeholder panorama. Replace the URL in the source to use a custom 360° photo of a Toriyama exhibit or artwork you own the rights to.</small>
+        </section>
+
+        <footer className="card text-sm text-gray-600">
+          <strong>How to edit content:</strong> Open the deployed project and modify the timeline array, gallery image URLs, or the panorama URL. Replace placeholder images with your own high-resolution panorama (equirectangular) to enable true 360° inspection.
+        </footer>
+      </div>
+    </div>
+  );
+}
